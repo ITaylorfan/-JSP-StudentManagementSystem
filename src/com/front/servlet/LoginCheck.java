@@ -61,15 +61,22 @@ public class LoginCheck extends HttpServlet {
 			String account = request.getParameter("account");
 			String passWord = request.getParameter("password");
 			String isChecked = request.getParameter("isChecked");
+			String checkCode=request.getParameter("checkCode");  //获取输入验证码
 			System.out.println("是否选中" + isChecked);
 
 			String sql = "select * from user_login where username='" + account + "' and password='" + passWord + "'";
 
 			ResultSet rSet = jdbc.query(sql);
-
+			HttpSession session = request.getSession();
+			if(!checkCode.equals(session.getAttribute("rCode"))){
+				// 验证码错误！
+				String error = "验证码错误！";
+				session.setAttribute("error", error);
+				response.sendRedirect("Login.jsp");
+			}
 			if (!rSet.next()) {
 				// 账号或密码错误！
-				HttpSession session = request.getSession();
+				//HttpSession session = request.getSession();
 				String error = "账号或密码错误！";
 				session.setAttribute("error", error);
 				response.sendRedirect("Login.jsp");
@@ -104,7 +111,7 @@ public class LoginCheck extends HttpServlet {
 				response.addCookie(cookie);
 				response.sendRedirect("HomeServlet");
 
-				HttpSession session = request.getSession();
+				//HttpSession session = request.getSession();
 				String error = null;
 				session.setAttribute("error", error);
 
