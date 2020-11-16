@@ -1,7 +1,7 @@
 <%@page import="com.front.Bean.MyInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,7 +13,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../assets/images/favicon.jpeg">
 
-<title>学生信息管理系统</title>
+<title>学生信息管理系统 | 个人中心</title>
 
 <!-- Bootstrap core CSS -->
 <link
@@ -25,12 +25,11 @@
 
 </head>
 <%
-/* 解决直接打开当前页面没有值的问题 */
- 	MyInfo myInfo=(MyInfo)session.getAttribute("MyInfo");
-	if(myInfo==null){
-		response.sendRedirect("../HomeServlet");	
-	} 
-	
+	/* 解决直接打开当前页面没有值的问题 */
+	MyInfo myInfo = (MyInfo) session.getAttribute("MyInfo");
+	if (myInfo == null) {
+		response.sendRedirect("../HomeServlet");
+	}
 %>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -51,8 +50,25 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">设置</a></li>
-				<li><a href="#">关于</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-question-sign"></span> 关于</a></li>
+				<li>
+					<!-- Single button -->
+					<div class="btn-group" style="height:50px;margin-right:10px">
+						<button type="button" class="btn btn-default dropdown-toggle" style="top:8px"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="glyphicon glyphicon-cog"></span> 设置
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="#">更改密码</a></li>
+			
+							<!-- 分割线 -->
+							<li role="separator" class="divider"></li>
+							<li><a href="#">退出登录</a></li>
+						</ul>
+					</div>
+				</li>
+
+				
 			</ul>
 			<form class="navbar-form navbar-left">
 				<input type="text" class="form-control" placeholder="Search...">
