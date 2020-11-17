@@ -13,7 +13,7 @@
 <meta name="author" content="">
 <link rel="icon" href="../assets/images/favicon.jpeg">
 
-<title>学生信息管理系统 | 个人中心</title>
+<title>学生信息管理系统 | 更改密码</title>
 
 <!-- Bootstrap core CSS -->
 <link
@@ -21,7 +21,8 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="../assets/styles/css/control_home.css" rel="stylesheet">
+<link href="../assets/styles/css/changePassword.css" rel="stylesheet">
+
 
 </head>
 <%
@@ -50,25 +51,29 @@
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-			<li><a href="https://itaylorfan.github.io/me/" target="blank"><span class="glyphicon glyphicon-question-sign"></span> 关于</a></li>
+				<li><a href="https://itaylorfan.github.io/me/" target="blank"><span
+						class="glyphicon glyphicon-question-sign"></span> 关于</a></li>
 				<li>
 					<!-- Single button -->
-					<div class="btn-group" style="height:50px;margin-right:10px">
-						<button type="button" class="btn btn-default dropdown-toggle" style="top:8px"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<div class="btn-group" style="height: 50px; margin-right: 10px">
+						<button type="button" class="btn btn-default dropdown-toggle"
+							style="top: 8px" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">
 							<span class="glyphicon glyphicon-cog"></span> 设置
 						</button>
 						<ul class="dropdown-menu">
-							<li><a href="./changePassword.jsp" style="color:blue"><span class="glyphicon glyphicon-pencil"></span> 更改密码</a></li>
-			
+							<li><a href="changePassword.jsp" style="color: blue"><span
+									class="glyphicon glyphicon-pencil"></span> 更改密码</a></li>
+
 							<!-- 分割线 -->
 							<li role="separator" class="divider"></li>
-							<li><a href="../exitLogin" style="color:red"><span class="glyphicon glyphicon-off"></span> 退出登录</a></li>
+							<li><a href="../exitLogin" style="color: red"><span
+									class="glyphicon glyphicon-off"></span> 退出登录</a></li>
 						</ul>
 					</div>
 				</li>
 
-				
+
 			</ul>
 			<form class="navbar-form navbar-left">
 				<input type="text" class="form-control" placeholder="Search...">
@@ -82,7 +87,7 @@
 			<!-- 左边菜单 -->
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a href="#"> <span
+					<li class="active"><a href="home.jsp"> <span
 							class="glyphicon glyphicon-user"></span> 个人中心
 					</a></li>
 					<li><a href="MyClass.jsp"><span
@@ -94,64 +99,35 @@
 					<li><a href="MyGrade.jsp"><span
 							class="glyphicon glyphicon-thumbs-up"></span> 我的成绩</a></li>
 				</ul>
-				<!--      <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul> -->
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">个人中心</h1>
+				<h1 class="page-header">修改密码</h1>
 
 				<div class="row placeholders">
 					<!-- 头像 -->
-					<div class="col-xs-12 col-sm-12 col-md-3 placeholder">
-						<img src="../assets/images/avatar.jpg" width="200" height="200"
-							class="" alt="Generic placeholder thumbnail">
-						<h4>${MyInfo.name}</h4>
-						<span class="text-muted">${MyInfo.sno}</span>
-					</div>
-					<!-- 个人详细信息 -->
-					<div class="col-xs-12 col-sm-12  col-md-9 placeholder">
-						<div class="panel panel-default panel-primary">
-							<div class="panel-heading">
-								<h3 class="panel-title">个人信息</h3>
-							</div>
-							<div class=" panel-body">
-								<ul class="list-group col-xs-5 col-sm-5  col-md-4">
-									<li class="list-group-item list-group-item-info">学号</li>
-									<li class="list-group-item list-group-item-success">姓名</li>
-									<li class="list-group-item list-group-item-info">性别</li>
-									<li class="list-group-item list-group-item-success">生日</li>
-									<li class="list-group-item list-group-item-info">专业</li>
-									<li class="list-group-item list-group-item-success">班级</li>
-									<li class="list-group-item list-group-item-info">家庭住址</li>
-									<li class="list-group-item list-group-item-success">手机号</li>
-									<li class="list-group-item list-group-item-info">应届往届</li>
-								</ul>
-								<ul class="list-group col-xs-7 col-sm-7  col-md-8">
-									<li class="list-group-item list-group-item-info">${MyInfo.sno}</li>
-									<li class="list-group-item list-group-item-success">${MyInfo.name}</li>
-									<li class="list-group-item list-group-item-info">${MyInfo.sex}</li>
-									<li class="list-group-item list-group-item-success">${MyInfo.birthday}</li>
-									<li class="list-group-item list-group-item-info">${MyInfo.major}</li>
-									<li class="list-group-item list-group-item-success">${MyInfo.myClass}</li>
-									<li class="list-group-item list-group-item-info">${MyInfo.address}</li>
-									<li class="list-group-item list-group-item-success">${MyInfo.phone}</li>
-									<li class="list-group-item list-group-item-info">${MyInfo.remark}</li>
-								</ul>
-							</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 placeholder">
+						<div class="form-box" id="form-box">
+							<!-- <div class="img-box"></div>
+							<div class="title-box">
+								<span>修改密码</span>
+							</div> -->
+
+							<form class="form-signin" action="loginCheck" method="post">
+								<!--  <h3 class="form-signin-heading">登陆</h2> -->
+								<label for="inputAccount" class="sr-only">请输入新密码</label> <input
+									type="text" id="inputAccount" class="form-control"
+									name="account" placeholder="请输入新密码" required="" autofocus=""
+									value=""> <label for="inputPassword" class="sr-only">确认密码</label>
+								<input type="password" id="inputPassword" class="form-control"
+									name="password" placeholder="确认密码" required="" value="">
+								
+
+								<button class="btn btn-lg btn-success btn-block" type="submit">提交</button>
+							</form>
 						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
 		</div>
 	</div>
@@ -167,5 +143,7 @@
 	</script>
 	<script
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

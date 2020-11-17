@@ -71,8 +71,8 @@
 					name="password" placeholder="密码" required=""
 					value="<%=remember == null ? "" : data[1]%>">
 				<label for="inputAccount" class="sr-only">验证码</label>
-				<input type="text" name="checkCode"  class="form-control" required="" id="inputAccount" style="width:50%;display:inline" placeholder="验证码">
-				<img src="./tools/checkCode.jsp"/>  
+				<input type="text" name="checkCode"  class="form-control" required="" id="inputCheckCode" style="width:50%;display:inline" placeholder="验证码">
+				<img src="./tools/checkCode.jsp" id="checkCodeImage"/>
 				
 				<div class="checkbox">
 					<label> <input type="checkbox" name="isChecked"
@@ -91,5 +91,12 @@
 	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+	<script>
+		//点击刷新验证码
+		$("#checkCodeImage").click(function(){
+			//console.log($(this).attr("src"));
+			$(this).attr("src","./tools/checkCode.jsp?"+Math.random());
+		});	
+	</script>
 </body>
 </html>

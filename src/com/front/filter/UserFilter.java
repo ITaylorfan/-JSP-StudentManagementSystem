@@ -82,9 +82,9 @@ public class UserFilter implements Filter {
             }
         }
         
-		/*if (!(url.indexOf("control")<0)&&data==null) {
+		if (!(url.indexOf("control")<0)&&data==null) {
 			res.sendRedirect(req.getContextPath()+"/Login.jsp");
-		}*/
+		}
 		
 		chain.doFilter(request, response);
 	}
