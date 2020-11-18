@@ -38,15 +38,30 @@
           Impulse-学生信息管理系统</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
+         	<ul class="nav navbar-nav navbar-right">
+			<li><a href="https://itaylorfan.github.io/me/" target="blank"><span class="glyphicon glyphicon-question-sign"></span> 关于</a></li>
+				<li>
+					<!-- Single button -->
+					<div class="btn-group" style="height:50px;margin-right:10px">
+						<button type="button" class="btn btn-default dropdown-toggle" style="top:8px"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="glyphicon glyphicon-cog"></span> 设置
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="./changePassword.jsp" style="color:blue"><span class="glyphicon glyphicon-pencil"></span> 更改密码</a></li>
+			
+							<!-- 分割线 -->
+							<li role="separator" class="divider"></li>
+							<li><a href="../exitLogin" style="color:red"><span class="glyphicon glyphicon-off"></span> 退出登录</a></li>
+						</ul>
+					</div>
+				</li>
+
+				
+			</ul>
+			<form class="navbar-form navbar-left">
+				<input type="text" class="form-control" placeholder="Search...">
+			</form>
         </div>
       </div>
     </nav>

@@ -112,17 +112,19 @@
 								<span>修改密码</span>
 							</div> -->
 
-							<form class="form-signin" action="loginCheck" method="post">
-								<!--  <h3 class="form-signin-heading">登陆</h2> -->
-								<label for="inputAccount" class="sr-only">请输入新密码</label> <input
-									type="text" id="inputAccount" class="form-control"
-									name="account" placeholder="请输入新密码" required="" autofocus=""
-									value=""> <label for="inputPassword" class="sr-only">确认密码</label>
-								<input type="password" id="inputPassword" class="form-control"
-									name="password" placeholder="确认密码" required="" value="">
+							<form class="form-signin" action="../changePassword" method="post" id="changePasswordForm" onsubmit='return checkForm()'>
+								
+								<label for="inputPassword" class="sr-only">请输入新密码</label> 
+								<input
+									type="password" id="inputPassword" class="form-control"
+									name="password" placeholder="请输入新密码" required="" autofocus=""
+									value=""> 
+								<label for="confirmPassword" class="sr-only">确认密码</label>
+								<input type="password" id="confirmPassword" class="form-control"
+									name="confirmPassword" placeholder="确认密码" required="aaa" value="">
 								
 
-								<button class="btn btn-lg btn-success btn-block" type="submit">提交</button>
+								<button class="btn btn-lg btn-success btn-block" type="submit" style="outline:none" id="submit">提交</button>
 							</form>
 						</div>
 					</div>
@@ -131,7 +133,11 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="alert alert-danger" role="alert" style="width:300px;position:absolute;left:0;right:0;top:60px;margin:auto;display:none" id="errorDialog">
+		 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>错误!</strong>两次输入的密码不一致！
+	</div>
+	
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -143,6 +149,27 @@
 	</script>
 	<script
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script>
+	function checkForm(){
+		var passWord=$("#inputPassword").val();
+		var confirm=$("#confirmPassword").val();
+		if(passWord!==confirm){
+			$("#errorDialog").slideDown();
+		/* 	setTimeout(()=>{
+				$("#errorDialog").slideUp();
+			},3000) */
+				setTimeout(function(){
+					$("#errorDialog").slideUp();
+				},3000)
+			return false;
+		}else{
+			return true;
+		}
+		//console.log(passWord);
+		
+	}
+	</script>
 
 
 </body>

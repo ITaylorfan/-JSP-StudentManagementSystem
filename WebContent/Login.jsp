@@ -34,14 +34,10 @@
 %>
 <body>
 	<div class="container">
-		<%
-			String error = (String) session.getAttribute("error");
-			if (error != null) {
-		%>
-
-		<!-- 警告框 -->
+	
+			<!-- 警告框 -->
 		<div class="alert alert-danger alert-dismissible fade in" role="alert"
-			id="warningBox">
+			id="warningBox" style="display:none">
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
 				<span aria-hidden="true">×</span>
@@ -49,10 +45,17 @@
 			<h4>错误！</h4>
 			<p>${error}</p>
 		</div>
-		<%
-			}
-		%>
-
+		
+			<!-- 成功框 -->
+		<div class="alert alert-success alert-dismissible fade in" role="alert"
+			id="successBox" style="display:none;width:300px">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<h4>成功！</h4>
+			<p>${success}</p>
+		</div>
 
 		<div class="form-box">
 			<div class="img-box"></div>
@@ -97,6 +100,40 @@
 			//console.log($(this).attr("src"));
 			$(this).attr("src","./tools/checkCode.jsp?"+Math.random());
 		});	
+		
 	</script>
+		<%
+			String error = (String) session.getAttribute("error");
+			if (error != null) {
+		%>
+			<script>
+				$("#warningBox").slideDown();
+				setTimeout(()=>{
+					$("#warningBox").slideUp();
+				},3000)
+			</script>
+	
+		<%
+			}
+			
+			session.setAttribute("error", null);
+		%>
+		
+			<%
+			String success = (String) session.getAttribute("success");
+			if (success != null) {
+		%>
+			<script>
+				$("#successBox").slideDown();
+				setTimeout(()=>{
+					$("#successBox").slideUp();
+				},3000)
+			</script>
+	
+		<%
+			}
+			session.setAttribute("success", null);
+		%>
+		
 </body>
 </html>
