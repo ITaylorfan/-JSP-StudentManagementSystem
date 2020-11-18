@@ -84,6 +84,9 @@ public class UserFilter implements Filter {
         
 		if (!(url.indexOf("control")<0)&&data==null) {
 			res.sendRedirect(req.getContextPath()+"/Login.jsp");
+			//response提交后会继续向下执行  再次提交response就会报错 
+			//因此需要加入return 阻止代码继续向下执行
+			return;
 		}
 		
 		chain.doFilter(request, response);
