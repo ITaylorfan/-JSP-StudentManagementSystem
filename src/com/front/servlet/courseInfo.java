@@ -65,7 +65,7 @@ public class courseInfo extends HttpServlet {
 			// »ñÈ¡°àºÅ×Ö·û´®½ØÈ¡
 			String classId = data[3].substring(0, data[3].length() - 2);
 			
-			String sql = "SELECT DISTINCT a.*,b.teacher FROM course_info  a,course_chat b " + "WHERE class_id="
+			String sql = "SELECT DISTINCT a.*,b.teacher FROM course_info  a,course_chart b " + "WHERE class_id="
 					+ classId + " AND a.cno=b.cno;";
 			System.out.println(sql);
 			ResultSet rSet = jdbc.query(sql);

@@ -89,7 +89,7 @@
 							class="glyphicon glyphicon-home"></span> 我的班级</a></li>
 					<li><a href="CourseInfo.jsp"><span
 							class="glyphicon glyphicon-blackboard"></span> 课程信息</a></li>
-					<li><a href="MyCourseChat.jsp"><span
+					<li><a href="MyCourseChart.jsp"><span
 							class="glyphicon glyphicon-list-alt"></span> 班级课程表</a></li>
 					<li><a href="MyGrade.jsp"><span
 							class="glyphicon glyphicon-thumbs-up"></span> 我的成绩</a></li>

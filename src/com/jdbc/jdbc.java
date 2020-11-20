@@ -15,7 +15,7 @@ public class jdbc {
 	static{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jspfinalproject","root","123456");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jspstudentsystem","root","123456");
 		} 
 		catch (Exception e) {
 			// TODO: handle exception
