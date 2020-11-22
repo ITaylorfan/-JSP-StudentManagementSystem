@@ -38,7 +38,7 @@
             <h1 class="cover-heading">欢迎使用本系统!</h1>
             <p class="lead">本系统使用bootstrap响应式框架、JSP、JavaBean、Servlet、JDBC等相关技术,希望能给您带来良好的使用体验!</p>
             <p class="lead">
-              <a href="Login.jsp" class="btn btn-lg btn-default">点击登录</a>
+              <a href="./tools/transition.html" class="btn btn-lg btn-default">点击进入系统</a>
             </p>
           </div>
 

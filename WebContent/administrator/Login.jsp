@@ -9,11 +9,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="./assets/images/favicon.jpeg">
+<link rel="icon" href="../assets/images/favicon.jpeg">
 <!-- Bootstrap core CSS -->
-<link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- My CSS -->
-<link href="./assets/styles/css/login.css" rel="stylesheet">
+<link href="../assets/styles/css/login.css" rel="stylesheet">
 <title>登录</title>
 </head>
 
@@ -23,7 +23,7 @@
 	String[] data = null;
 	if (cookies != null && cookies.length > 0) {
 		for (Cookie c : cookies) {
-			if (c.getName().equals("remember")) {
+			if (c.getName().equals("rememberAdministrator")) {
 				remember = c;
 				//字符串分割
 				data = URLDecoder.decode(remember.getValue(), "utf-8").split(","); /*使用utf-8读取*/
@@ -62,11 +62,11 @@
 			
 			<div class="change-status">
 			<p></p>
-			<span><a href="./administrator/Login.jsp">切换管理员</a></span>
+			<span><a href="../Login.jsp">切换学生</a></span>
 			<p></p>
 			<span class="glyphicon glyphicon-arrow-up"></span>
 			</div>
-			<div class="change-status-bg-box">
+			<div class="change-status-bg-box" style="border-top: 100px solid #3389BF;">
 			</div>
 			
 			
@@ -75,8 +75,8 @@
 				<span>学生信息管理系统登录</span>
 			</div>
 
-			<form class="form-signin" action="loginCheck" method="post">
-				 <h5 class="form-signin-heading" style="font-weight:bold;color:#337AB7">学生登录</h5>
+			<form class="form-signin" action="../administratorLogin" method="post">
+				 <h5 class="form-signin-heading" style="font-weight:bold;color:#CD995D">管理员登录</h5>
 				<label for="inputAccount" class="sr-only">用户名</label> <input
 					type="text" id="inputAccount" class="form-control" name="account"
 					placeholder="用户名" required="" autofocus=""
@@ -87,14 +87,14 @@
 					value="<%=remember == null ? "" : data[1]%>">
 				<label for="inputAccount" class="sr-only">验证码</label>
 				<input type="text" name="checkCode"  class="form-control" required="" id="inputCheckCode" style="width:50%;display:inline" placeholder="验证码">
-				<img src="./tools/checkCode.jsp" id="checkCodeImage"/>
+				<img src="../tools/checkCode.jsp" id="checkCodeImage"/>
 				
 				<div class="checkbox">
 					<label> <input type="checkbox" name="isChecked"
 						<%=remember == null ? "" : "checked"%>> 记住我
 					</label>
 				</div>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color:#CD995D;border:none">登录</button>
 			</form>
 		</div>
 	</div>
