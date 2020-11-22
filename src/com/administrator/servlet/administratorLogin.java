@@ -50,7 +50,7 @@ public class administratorLogin extends HttpServlet {
 			String passWord = request.getParameter("password");
 			String isChecked = request.getParameter("isChecked");
 			String checkCode=request.getParameter("checkCode");  //获取输入验证码
-			System.out.println("是否选中" + isChecked);
+			//System.out.println("是否选中" + isChecked);
 
 			String sql = "select * from user_login where username='" + account + "' and password='" + passWord + "' and type='管理员'";
 
@@ -80,7 +80,7 @@ public class administratorLogin extends HttpServlet {
 				    userType = rSet.getString(3);
 				}
 			    	 
-				System.out.println(idNumber + userType);
+				//System.out.println(idNumber + userType);
 				
 				// 新建cookie
 				// 将用户名和密码和用户类别和用户信息识别id加入cookie
@@ -106,7 +106,7 @@ public class administratorLogin extends HttpServlet {
 
 			}
 
-			System.out.println(account + passWord);
+			//System.out.println(account + passWord);
 		} catch (Exception e) {
 			// TODO: handle exception
 

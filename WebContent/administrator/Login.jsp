@@ -110,7 +110,7 @@
 		//点击刷新验证码
 		$("#checkCodeImage").click(function(){
 			//console.log($(this).attr("src"));
-			$(this).attr("src","./tools/checkCode.jsp?"+Math.random());
+			$(this).attr("src","../tools/checkCode.jsp?"+Math.random());
 		});	
 		
 	</script>
