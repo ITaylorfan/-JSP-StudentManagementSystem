@@ -123,12 +123,12 @@
 							<span class="glyphicon glyphicon-cog"></span> 设置
 						</button>
 						<ul class="dropdown-menu">
-							<li><a href="./changePassword.jsp" style="color: blue"><span
+							<li><a href="./ChangePassword.jsp" style="color: blue"><span
 									class="glyphicon glyphicon-pencil"></span> 更改密码</a></li>
 
 							<!-- 分割线 -->
 							<li role="separator" class="divider"></li>
-							<li><a href="../exitLogin" style="color: red"><span
+							<li><a href="../administratorExitLogin" style="color: red"><span
 									class="glyphicon glyphicon-off"></span> 退出登录</a></li>
 						</ul>
 					</div>
@@ -152,16 +152,18 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="Home.jsp"> <span
-							class="glyphicon glyphicon-user"></span> 用户管理
+							class="glyphicon glyphicon-home"></span> 用户管理
 					</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-home"></span>
-							我的班级</a></li>
+					<li><a href="StudentInfo.jsp"><span class="glyphicon glyphicon-user"></span>
+							学生信息管理</a></li>
 					<li><a href="CourseInfo.jsp"><span
-							class="glyphicon glyphicon-blackboard"></span> 课程信息</a></li>
+							class="glyphicon glyphicon-blackboard"></span> 班级信息管理</a></li>
 					<li><a href="MyCourseChart.jsp"><span
-							class="glyphicon glyphicon-list-alt"></span> 班级课程表</a></li>
+							class="glyphicon glyphicon-list-alt"></span> 课程信息管理</a></li>
 					<li><a href="MyGrade.jsp"><span
-							class="glyphicon glyphicon-thumbs-up"></span> 我的成绩</a></li>
+							class="glyphicon glyphicon glyphicon-th"></span> 课程表信息管理</a></li>
+						<li><a href="MyGrade.jsp"><span
+							class="glyphicon glyphicon-thumbs-up"></span> 成绩信息管理</a></li>
 				</ul>
 
 			</div>
