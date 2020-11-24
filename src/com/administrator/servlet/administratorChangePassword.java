@@ -19,36 +19,38 @@ import com.jdbc.jdbc;
 @WebServlet("/administratorChangePassword")
 public class administratorChangePassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public administratorChangePassword() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public administratorChangePassword() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
-request.setCharacterEncoding("utf-8");
-		
+
+		request.setCharacterEncoding("utf-8");
+
 		String passWord = request.getParameter("password");
-		
-		
-		
+
 		Cookie[] cookies = request.getCookies();
 		Cookie remember = null;
 		String[] data = null;
@@ -56,21 +58,23 @@ request.setCharacterEncoding("utf-8");
 			for (Cookie c : cookies) {
 				if (c.getName().equals("rememberAdministrator")) {
 					remember = c;
-					//字符串分割
-					data = URLDecoder.decode(remember.getValue(), "utf-8").split(","); /*使用utf-8读取*/
-					
-					//删除cookie
+					// 字符串分割
+					data = URLDecoder.decode(remember.getValue(), "utf-8")
+							.split(","); /* 使用utf-8读取 */
+
+					// 删除cookie
 					c.setMaxAge(0);
-	                response.addCookie(c);
+					response.addCookie(c);
 				}
 			}
 		}
-		
-		String sql = "UPDATE user_login SET PASSWORD='"+passWord+"' WHERE username='"+data[0]+"' and type='管理员'";
+
+		String sql = "UPDATE user_login SET PASSWORD='" + passWord + "' WHERE username='" + data[0]
+				+ "' and type='管理员'";
 		jdbc.update(sql);
-		
-		HttpSession session=request.getSession();
-		session.setAttribute("success","更改密码成功！请重新登录");
+
+		HttpSession session = request.getSession();
+		session.setAttribute("success", "更改密码成功！请重新登录");
 		response.sendRedirect("./administrator/Login.jsp");
 	}
 

@@ -1,6 +1,5 @@
 package com.administrator.servlet;
 
-import java.io.Console;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,16 +11,16 @@ import javax.servlet.http.HttpSession;
 import com.jdbc.jdbc;
 
 /**
- * Servlet implementation class administratorStudentInfoEdit
+ * Servlet implementation class administratorStudentInfoAdd
  */
-@WebServlet("/administratorStudentInfoEdit")
-public class administratorStudentInfoEdit extends HttpServlet {
+@WebServlet("/administratorStudentInfoAdd")
+public class administratorStudentInfoAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public administratorStudentInfoEdit() {
+    public administratorStudentInfoAdd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,14 +51,17 @@ public class administratorStudentInfoEdit extends HttpServlet {
 		String phone=request.getParameter("phone");
 		String remark=request.getParameter("remark");
 		
-		String sql="update student_info set sno='"+sno+"',name='"+name+"',sex='"+sex+"',birthday='"+birthday+"',major='"+major+"',"
-				+ "class='"+className+"',address='"+address+"',phone='"+phone+"',remark='"+remark+"' where sno='"+sno+"';";
+		String classId;
+		classId=sno.substring(0,sno.length()-2);
+		//System.out.println(classId);
+		
+		String sql="insert into student_info values('"+sno+"','"+name+"','"+sex+"','"+birthday+"','"+major+"',"
+				+ "'"+className+"','"+address+"','"+phone+"','"+remark+"','"+classId+"');";
 		jdbc.update(sql);
-		System.out.println(sql);
+		//System.out.println(sql);
 		HttpSession session=request.getSession();
-		session.setAttribute("success","保存成功！");
+		session.setAttribute("success","添加成功！");
 		response.sendRedirect("./administratorStudentInfoGet");
-		//System.out.println(sno+sex+birthday);
 	}
 
 }

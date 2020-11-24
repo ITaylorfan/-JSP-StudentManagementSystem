@@ -51,7 +51,7 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-					<p>确定要删除吗？</p>
+					<p>确定要删除&nbsp;<span style="color:red" id="myModalTip"></span>&nbsp;吗？</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"
@@ -80,26 +80,13 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-					<!-- 	<form class="form-signin" action="../administratorLogin"
-						method="post">
-						<h5 class="form-signin-heading"
-							style="font-weight: bold; color: #CD995D">学生信息</h5>
-						<label for="inputSno" class="">学号：</label> <input
-							type="text" id="inputSno" class="form-control" name="sno"
-							style="width: 80%;display:inline"
-							placeholder="用户名" required="" autofocus="" value="">
-							<br> 
-						<label for="inputSno" class="">学号：</label> <input
-							type="text" id="inputSno" class="form-control" name="sno"
-							style="width: 80%;display:inline"
-							placeholder="用户名" required="" autofocus="" value=""> 
-					</form> -->
+				
 					<form class="form-horizontal" id="editForm" action="../administratorStudentInfoEdit" method="post">
 						<div class="form-group">
 							<label for="inputSno" class="col-sm-2 control-label">学号</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputSno"
-									placeholder="请输入学号" name="sno">
+									placeholder="请输入学号" name="sno" readonly>
 							</div>
 						</div>
 						<div class="form-group">
@@ -162,12 +149,113 @@
 						</div>
 
 					</form>
+					
+					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"
 						onclick="cancelEdit()">取消</button>
 					<button type="button" class="btn btn-primary"
 						onclick="comfirmEdit()">确定</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	
+		<!-- 模态框3 添加信息用 -->
+	<div class="modal" tabindex="-1" role="dialog" id="myModal3"
+		style="display: none">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title">
+						<span class="glyphicon glyphicon-pencil"></span> 编辑
+					</h4>
+				</div>
+				<div class="modal-body">
+				
+					<form class="form-horizontal" id="editForm2" action="../administratorStudentInfoAdd" method="post">
+						<div class="form-group">
+							<label for="inputSno" class="col-sm-2 control-label">学号</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputSno"
+									placeholder="请输入学号" name="sno" required="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputName" class="col-sm-2 control-label">姓名</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputName"
+									placeholder="请输入姓名" name="name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputSex2" class="col-sm-2 control-label">性别</label>
+							<div class=" col-sm-10">
+								<select class="form-control" id="inputSex2" name="sex">
+									<option>男</option>
+									<option>女</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputBirthday" class="col-sm-2 control-label">生日</label>
+							<div class=" col-sm-10">
+								<input type="date" class="form-control" id="inputBirthday"
+									placeholder="请输入生日" name="birthday">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputMajor" class="col-sm-2 control-label">专业</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputMajor"
+									placeholder="请输入专业" name="major">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputClass" class="col-sm-2 control-label">班级</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputClass"
+									placeholder="请输入班级" name="className">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputAddress" class="col-sm-2 control-label">地址</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputAddress"
+									placeholder="请输入地址" name="address">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPhone" class="col-sm-2 control-label">手机号</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputPhone"
+									placeholder="请输入手机号" name="phone">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputRemark" class="col-sm-2 control-label">备注</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputRemark"
+									placeholder="请输入备注" name="remark">
+							</div>
+						</div>
+
+					</form>
+					
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						onclick="cancelEdit()">取消</button>
+					<button type="button" class="btn btn-primary"
+						onclick="confirmAdd()">确定</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -299,11 +387,14 @@
 										<th>地址</th>
 										<th>手机号</th>
 										<th>备注</th>
-										<th><button type="button" class="btn btn-info btn-xs"
-												style="" id="refresh">刷新</button></th>
+										<th><button type="button" class="btn btn-info btn-sm"
+												style="" id="refresh">刷新</button>
+											<button type="button" class="btn btn-warning btn-sm"
+												style="" id="add">添加</button>	
+										</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="tbody">
 									<c:forEach items="${AllStudentInfo}" var="ci">
 										<tr>
 											<td>${ci.sno}</td>
@@ -346,12 +437,53 @@
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<script>
+		/* 确认添加信息 */
+		function confirmAdd(){
+			const Form=$("#editForm2 input");
+			const SelectSex=$("#inputSex2");
+			//获取学号数据
+			const tbody=$("#tbody>tr");
+			
+			let index=0;
+		    for(let i=0;i<Form.length;i++){
+				if(Form.eq(i).val().replace(/\s+/g,"")===""){
+					alert("请填写完整！");
+					return
+				}else{
+					index++;
+				}
+			}
+		    
+		    for(let j=0;j<tbody.length;j++){
+		    	if(tbody.eq(j).find("td:first")[0].innerHTML==Form.eq(0).val()){
+		    		alert("学号已存在！");
+					return
+		    	}
+				//console.log(tbody.eq(j).find("td:first")[0].innerHTML);
+			}
+		    
+			if(index===Form.length){
+				console.log("可以提交！");
+				$("#editForm2").submit();
+			} 
+			
+			
+			
+			
+		}
+		/* 添加信息 */
+		$("#add").click(function(){
+			//console.log("aaa");
+			$('#myModal3').modal("show");
+		})
+		
+		
 		/*搜索*/
 		$("#search").click(function(){
 			let text=$("#searchInput").val();
 			if(text!==""){
 				//console.log(text);
-				window.location = "../administratorHomeSearch?query="+text;
+				window.location = "../administratorStudentInfoSearch?query="+text;
 			}
 			
 		})
@@ -399,22 +531,27 @@
 			$('#myModal2').removeAttr("data");
 			
 		}
+		
+		/*取消删除*/
+	    function cancelDelete(){
+	    	$('#myModal').removeAttr("data");
+	    }
 		/*确定删除*/
 	    function comfirmDelete(){
 			let sno;
 	    	sno=$('#myModal').attr("data");
 	    	console.log(sno);
-	    	window.location = "../administratorHomeDelete?sno="+sno;
+	    	window.location = "../administratorStudentInfoDelete?sno="+sno;
 	    }
 	    /* 触发删除模态框 */
 		function deleteDialog(e){
 			const event=e||window.event;
-			let sno=event.target.parentNode.parentNode.children[1].innerHTML;
+			let sno=event.target.parentNode.parentNode.children[0].innerHTML;
 			//显示模态框
 			$('#myModal').modal("show");
 			//暂存数据
 			$('#myModal').attr("data",sno);
-			//$(".modal-body>p").text("确定要删除吗？");
+			$("#myModalTip").text(sno);
 			//window.location = "../administratorHomeDelete";
 		}
 		/* 刷新按钮 */
