@@ -25,7 +25,7 @@
 <!-- Custom styles for this template -->
 <link href="../assets/styles/css/Administrator/home.css"
 	rel="stylesheet">
-	
+
 
 </head>
 <%
@@ -51,7 +51,9 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-					<p>确定要删除&nbsp;<span style="color:red" id="myModalTip"></span>&nbsp;吗？</p>
+					<p>
+						确定要删除&nbsp;<span style="color: red" id="myModalTip"></span>&nbsp;吗？
+					</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"
@@ -80,8 +82,9 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-				
-					<form class="form-horizontal" id="editForm" action="../administratorStudentInfoEdit" method="post">
+
+					<form class="form-horizontal" id="editForm"
+						action="../administratorStudentInfoEdit" method="post">
 						<div class="form-group">
 							<label for="inputSno" class="col-sm-2 control-label">学号</label>
 							<div class="col-sm-10">
@@ -149,8 +152,8 @@
 						</div>
 
 					</form>
-					
-					
+
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"
@@ -163,8 +166,8 @@
 		</div>
 		<!-- /.modal-dialog -->
 	</div>
-	
-		<!-- 模态框3 添加信息用 -->
+
+	<!-- 模态框3 添加信息用 -->
 	<div class="modal" tabindex="-1" role="dialog" id="myModal3"
 		style="display: none">
 		<div class="modal-dialog" role="document">
@@ -179,8 +182,9 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-				
-					<form class="form-horizontal" id="editForm2" action="../administratorStudentInfoAdd" method="post">
+
+					<form class="form-horizontal" id="editForm2"
+						action="../administratorStudentInfoAdd" method="post">
 						<div class="form-group">
 							<label for="inputSno" class="col-sm-2 control-label">学号</label>
 							<div class="col-sm-10">
@@ -248,8 +252,8 @@
 						</div>
 
 					</form>
-					
-					
+
+
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal"
@@ -302,7 +306,7 @@
 				<img src="../assets/images/logo.webp" alt="..."
 					style="width: 40px; height: 40px; display: inhert">
 			</div>
-			<a class="navbar-brand" href="home.jsp"> Impulse-学生信息管理系统</a>
+			<a class="navbar-brand" href="Home.jsp"> Impulse-学生信息管理系统</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -352,14 +356,16 @@
 					</a></li>
 					<li class="active"><a href="#"><span
 							class="glyphicon glyphicon-user"></span> 学生信息管理</a></li>
-					<li><a href="CourseInfo.jsp"><span
+					<li><a href="ClassInfo.jsp"><span
 							class="glyphicon glyphicon-blackboard"></span> 班级信息管理</a></li>
-					<li><a href="MyCourseChart.jsp"><span
+						<li><a href="CourseInfo.jsp"><span
 							class="glyphicon glyphicon-list-alt"></span> 课程信息管理</a></li>
-					<li><a href="MyGrade.jsp"><span
+					<li><a href="CourseChartInfo.jsp"><span
 							class="glyphicon glyphicon glyphicon-th"></span> 课程表信息管理</a></li>
-					<li><a href="MyGrade.jsp"><span
+						<li><a href="GradeInfo.jsp"><span
 							class="glyphicon glyphicon-thumbs-up"></span> 成绩信息管理</a></li>
+					<li><a href="UserCenter.jsp"><span
+							class="glyphicon glyphicon-asterisk"></span> 个人中心</a></li>
 				</ul>
 
 			</div>
@@ -389,9 +395,8 @@
 										<th>备注</th>
 										<th><button type="button" class="btn btn-info btn-sm"
 												style="" id="refresh">刷新</button>
-											<button type="button" class="btn btn-warning btn-sm"
-												style="" id="add">添加</button>	
-										</th>
+											<button type="button" class="btn btn-warning btn-sm" style=""
+												id="add">添加</button></th>
 									</tr>
 								</thead>
 								<tbody id="tbody">
@@ -435,7 +440,7 @@
 	</script>
 	<script
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+
 	<script>
 		/* 确认添加信息 */
 		function confirmAdd(){
