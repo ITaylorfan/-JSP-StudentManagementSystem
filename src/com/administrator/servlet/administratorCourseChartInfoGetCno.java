@@ -1,6 +1,7 @@
 package com.administrator.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URLDecoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,21 +16,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.administrator.bean.AllStudentInfo;
-import com.administrator.bean.ClassInfo;
+import com.administrator.bean.CourseInfo;
+import com.alibaba.fastjson.JSON;
+
 import com.jdbc.jdbc;
 
 /**
- * Servlet implementation class administratorClassInfoGet
+ * Servlet implementation class administratorCourseChartInfoGetCno
  */
-@WebServlet("/administratorClassInfoGet")
-public class administratorClassInfoGet extends HttpServlet {
+@WebServlet("/administratorCourseChartInfoGetCno")
+public class administratorCourseChartInfoGetCno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public administratorClassInfoGet() {
+    public administratorCourseChartInfoGetCno() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,7 +41,8 @@ public class administratorClassInfoGet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//这个一定要注释掉 不能JQuery Get拿不到数据！
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		Cookie[] cookies = request.getCookies();
         Cookie remember = null;
@@ -55,26 +58,35 @@ public class administratorClassInfoGet extends HttpServlet {
             }
         }
         if(data!=null){
-        	String sql="SELECT * FROM class_info;";
+        	String sql="SELECT * FROM course_info;";
     		ResultSet rSet = jdbc.query(sql);
-    		List<ClassInfo> list=new ArrayList<ClassInfo>();
+    		List<CourseInfo> list=new ArrayList<CourseInfo>();
     		//System.out.println(sql);
     		try {
     			while(rSet.next()){
     				//封装到javaBean中
-    				ClassInfo classInfo=new ClassInfo(rSet.getLong(6), 
-    						rSet.getString(1),rSet.getString(2),rSet.getInt(3),
-    						rSet.getDate(4),rSet.getString(5),rSet.getString(7));
+    				CourseInfo courseInfo=new CourseInfo(rSet.getInt(1),rSet.getString(2),rSet.getString(3),rSet.getInt(4));
     				//把对象加入容器
-    				list.add(classInfo);
+    				list.add(courseInfo);
     			}
     			//把容器加入session
 				HttpSession session=request.getSession();
-				session.setAttribute("ClassInfo",list);
+				/*session.setAttribute("CourseInfo",list);
 				session.setAttribute("searchContent", "");
 				//System.out.println(myInfo.getBirthday());
-				response.sendRedirect("administrator/ClassInfo.jsp");
+				response.sendRedirect("administrator/CourseInfo.jsp");*/
     			
+    			//将list容器中的内容转换成json数据
+    			request.setCharacterEncoding("utf-8");  // 设置request字符编码
+    	        String searchText = request.getParameter("search"); // 获取传入的search字段的内容
+    	        response.setContentType("text/json; charset=utf-8");    // 设置response的编码及格式
+    	        PrintWriter out = response.getWriter();
+    	        String resJSON = JSON.toJSONString(list);     // 转换为json
+    	       
+    	        out.print(resJSON); // 返回数据
+    	        
+    	        System.out.println(resJSON);
+    			System.out.println(searchText);
     		} catch (SQLException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -90,6 +102,9 @@ public class administratorClassInfoGet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		
+	
 	}
 
 }

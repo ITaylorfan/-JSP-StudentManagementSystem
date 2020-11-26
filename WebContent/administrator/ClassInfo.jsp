@@ -100,7 +100,7 @@
 									placeholder="请输入班名" name="class_name">
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<label for="inputMajor" class="col-sm-2 control-label">专业</label>
 							<div class="col-sm-10">
@@ -108,7 +108,7 @@
 									placeholder="请输入专业" name="major">
 							</div>
 						</div>
-							<div class="form-group">
+						<div class="form-group">
 							<label for="inputTotalPerson" class="col-sm-2 control-label">总人数</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputTotalPerson"
@@ -122,7 +122,7 @@
 									placeholder="请输入创建时间" name="join_year">
 							</div>
 						</div>
-					
+
 						<div class="form-group">
 							<label for="inputCounselor" class="col-sm-2 control-label">辅导员</label>
 							<div class="col-sm-10">
@@ -186,8 +186,8 @@
 									placeholder="请输入班名" name="class_name">
 							</div>
 						</div>
-						
-							<div class="form-group">
+
+						<div class="form-group">
 							<label for="inputMajor" class="col-sm-2 control-label">专业</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputMajor"
@@ -201,7 +201,7 @@
 									placeholder="请输入创建时间" name="join_year">
 							</div>
 						</div>
-					
+
 						<div class="form-group">
 							<label for="inputCounselor" class="col-sm-2 control-label">辅导员</label>
 							<div class="col-sm-10">
@@ -301,7 +301,7 @@
 			</ul>
 			<form class="navbar-form navbar-left">
 				<input type="text" class="form-control" placeholder="请输入内容..."
-					id="searchInput">
+					id="searchInput" value="${searchContent}">
 				<button type="button" class="btn btn-default" style="top: 8px"
 					id="search">
 					<span class="glyphicon glyphicon-search"></span> 搜索
@@ -319,15 +319,15 @@
 					<li><a href="Home.jsp"> <span
 							class="glyphicon glyphicon-home"></span> 用户管理
 					</a></li>
-					<li ><a href="StudentInfo.jsp"><span
+					<li><a href="StudentInfo.jsp"><span
 							class="glyphicon glyphicon-user"></span> 学生信息管理</a></li>
 					<li class="active"><a href="#"><span
 							class="glyphicon glyphicon-blackboard"></span> 班级信息管理</a></li>
-						<li><a href="CourseInfo.jsp"><span
+					<li><a href="CourseInfo.jsp"><span
 							class="glyphicon glyphicon-list-alt"></span> 课程信息管理</a></li>
 					<li><a href="CourseChartInfo.jsp"><span
 							class="glyphicon glyphicon glyphicon-th"></span> 课程表信息管理</a></li>
-						<li><a href="GradeInfo.jsp"><span
+					<li><a href="GradeInfo.jsp"><span
 							class="glyphicon glyphicon-thumbs-up"></span> 成绩信息管理</a></li>
 					<li><a href="UserCenter.jsp"><span
 							class="glyphicon glyphicon-asterisk"></span> 个人中心</a></li>
@@ -372,7 +372,7 @@
 											<td>${ci.join_year}</td>
 											<td>${ci.counselor}</td>
 											<td>${ci.headmaster}</td>
-											
+
 											<td style="width: 20%">
 												<button type="button" class="btn btn-success btn-sm"
 													style="outline: none" onclick="editDialog()">编辑</button>
@@ -453,7 +453,7 @@
 			let text=$("#searchInput").val();
 			if(text!==""){
 				//console.log(text);
-				window.location = "../administratorStudentInfoSearch?query="+text;
+				window.location = "../administratorClassInfoSearch?query="+text;
 			}
 			
 		})
@@ -465,7 +465,12 @@
 			const SelectSex=$("#inputSex");
 			/* console.log(SelectSex);
 			console.log(Form); */
-			let data="";
+			
+			let data=0;
+			//获取当前tr的下标
+			data=event.target.parentNode.parentNode.rowIndex;
+			//console.log(data);
+			
 			for(let i=0;i<event.target.parentNode.parentNode.children.length-1;i++){
 				//data+=event.target.parentNode.parentNode.children[i].innerHTML+",";
 				/* if(i==2){
@@ -484,7 +489,7 @@
 			//显示模态框
 			$('#myModal2').modal("show");
 			//暂存数据
-			//$('#myModal2').attr("data",data);
+			$('#myModal2').attr("data",data);
 		}
 		/* 确认编辑 */
 		function comfirmEdit(){
@@ -492,7 +497,34 @@
 			//const SelectSex=$("#inputSex");
 			//console.log(Form.eq(0).val());
 			//console.log(SelectSex.val());
-			$("#editForm").submit();
+			const tbody=$("#tbody>tr");
+			
+			//获取下标
+			let rowIndex=$('#myModal2').attr("data");
+			let index=0;
+			
+		    for(let i=0;i<Form.length;i++){
+				if(Form.eq(i).val().replace(/\s+/g,"")===""){
+					alert("请填写完整！");
+					return
+				}else{
+					index++;
+				}
+			}
+		    
+		    for(let j=0;j<tbody.length;j++){
+		    	if(tbody.eq(j).find("td").eq(1)[0].innerHTML==Form.eq(1).val()&&j!=rowIndex-1){
+		    		alert("班名已存在！");
+					return
+		    	}
+				//console.log(tbody.eq(j).find("td:first")[0].innerHTML);
+			}
+		    
+			if(index===Form.length){
+				console.log("可以提交！");
+				$("#editForm").submit();
+			} 
+			//$("#editForm").submit();
 			
 		}
 		

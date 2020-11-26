@@ -70,6 +70,7 @@ public class administratorStudentInfoGet extends HttpServlet {
     			//°ÑÈÝÆ÷¼ÓÈësession
 				HttpSession session=request.getSession();
 				session.setAttribute("AllStudentInfo",list);
+				
 				//System.out.println(myInfo.getBirthday());
 				response.sendRedirect("administrator/StudentInfo.jsp");
     			

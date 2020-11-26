@@ -15,21 +15,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.administrator.bean.AllStudentInfo;
-import com.administrator.bean.ClassInfo;
+import com.administrator.bean.CourseChartInfo;
+
 import com.jdbc.jdbc;
 
 /**
- * Servlet implementation class administratorClassInfoGet
+ * Servlet implementation class administratorCourseChartInfoGet
  */
-@WebServlet("/administratorClassInfoGet")
-public class administratorClassInfoGet extends HttpServlet {
+@WebServlet("/administratorCourseChartInfoGet")
+public class administratorCourseChartInfoGet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public administratorClassInfoGet() {
+    public administratorCourseChartInfoGet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -55,25 +55,24 @@ public class administratorClassInfoGet extends HttpServlet {
             }
         }
         if(data!=null){
-        	String sql="SELECT * FROM class_info;";
+        	String sql="SELECT a.*,b.cname FROM course_chart a,course_info b WHERE a.cno=b.cno ORDER BY plan_id;";
     		ResultSet rSet = jdbc.query(sql);
-    		List<ClassInfo> list=new ArrayList<ClassInfo>();
+    		List<CourseChartInfo> list=new ArrayList<CourseChartInfo>();
     		//System.out.println(sql);
     		try {
     			while(rSet.next()){
     				//封装到javaBean中
-    				ClassInfo classInfo=new ClassInfo(rSet.getLong(6), 
-    						rSet.getString(1),rSet.getString(2),rSet.getInt(3),
-    						rSet.getDate(4),rSet.getString(5),rSet.getString(7));
+    				CourseChartInfo courseChartInfo=new CourseChartInfo(rSet.getInt(1),rSet.getInt(2),rSet.getLong(3),
+    						rSet.getString(4),rSet.getString(5),rSet.getString(6),rSet.getString(7));
     				//把对象加入容器
-    				list.add(classInfo);
+    				list.add(courseChartInfo);
     			}
     			//把容器加入session
 				HttpSession session=request.getSession();
-				session.setAttribute("ClassInfo",list);
+				session.setAttribute("CourseChartInfo",list);
 				session.setAttribute("searchContent", "");
 				//System.out.println(myInfo.getBirthday());
-				response.sendRedirect("administrator/ClassInfo.jsp");
+				response.sendRedirect("administrator/CourseChartInfo.jsp");
     			
     		} catch (SQLException e) {
     			// TODO Auto-generated catch block
