@@ -87,7 +87,7 @@
 				<div class="modal-body">
 
 					<form class="form-horizontal" id="editForm"
-						action="../administratorCourseInfoEdit" method="post">
+						action="../administratorCourseChartInfoEdit" method="post">
 						<div class="form-group">
 							<label for="inputPlanId" class="col-sm-2 control-label">排课ID</label>
 							<div class="col-sm-10">
@@ -97,25 +97,26 @@
 						</div>
 						<div class="form-group">
 							<label for="inputCno" class="col-sm-2 control-label">课程号</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputCno"
-									placeholder="请输入课程号" name="cno" required="">
+							<div class=" col-sm-10">
+								<select class="form-control" id="selectCnoEdit" name="cno">
+									<!-- <option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option> -->
+								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputClassId" class="col-sm-2 control-label">班号</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputClassId"
-									placeholder="请输入班号" name="class_id">
+							<div class=" col-sm-10">
+								<select class="form-control" id="selectClassIdEdit" name="class_id">
+									<!-- <option>5183002141</option>
+									<option>5183002142</option> -->
+								</select>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="inputCname" class="col-sm-2 control-label">课程名</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputCname"
-									placeholder="请输入课程名" name="cname">
-							</div>
-						</div>
+					
 
 						<div class="form-group">
 							<label for="inputTeacher" class="col-sm-2 control-label">老师</label>
@@ -172,7 +173,7 @@
 				<div class="modal-body">
 
 					<form class="form-horizontal" id="editForm2"
-						action="../administratorCourseInfoAdd" method="post">
+						action="../administratorCourseChartInfoAdd" method="post">
 						<div class="form-group">
 							<label for="inputPlanId" class="col-sm-2 control-label">排课ID</label>
 							<div class="col-sm-10">
@@ -187,12 +188,12 @@
 									placeholder="请输入课程号" name="cno" required="" >
 							</div> -->
 							<div class=" col-sm-10">
-								<select class="form-control">
-									<option>1</option>
+								<select class="form-control" id="selectCno" name="cno">
+									<!-- <option>1</option>
 									<option>2</option>
 									<option>3</option>
 									<option>4</option>
-									<option>5</option>
+									<option>5</option> -->
 								</select>
 							</div>
 						</div>
@@ -204,9 +205,9 @@
 							</div> -->
 
 							<div class=" col-sm-10">
-								<select class="form-control">
-									<option>5183002141</option>
-									<option>5183002142</option>
+								<select class="form-control" id="selectClassId" name="class_id">
+									<!-- <option>5183002141</option>
+									<option>5183002142</option> -->
 								</select>
 							</div>
 						</div>
@@ -447,10 +448,7 @@
 		    
 		    for(let j=0;j<tbody.length;j++){
 		    	if(tbody.eq(j).find("td:first")[0].innerHTML==Form.eq(0).val()){
-		    		alert("课程号已存在！");
-					return
-		    	}else if(tbody.eq(j).find("td").eq(1)[0].innerHTML==Form.eq(1).val()){
-		    		alert("课程名已存在！");
+		    		alert("排课ID已存在！");
 					return
 		    	}
 				//console.log(tbody.eq(j).find("td:first")[0].innerHTML);
@@ -474,6 +472,8 @@
 		$("#add").click(function(){
 			//console.log("aaa");
 			$('#myModal3').modal("show");
+			getClassId();
+			getData();
 		})
 		
 		
@@ -482,7 +482,7 @@
 			let text=$("#searchInput").val();
 			if(text!==""){
 				//console.log(text);
-				window.location = "../administratorCourseInfoSearch?query="+text;
+				window.location = "../administratorCourseChartInfoSearch?query="+text;
 			}
 			
 		})
@@ -491,17 +491,31 @@
 		function editDialog(e){
 			const event=e||window.event;
 			const Form=$("#editForm input");
-			//const SelectSex=$("#inputSex");
-			/* console.log(SelectSex);
-			console.log(Form); */
+			
+		
+			//console.log(Form);
 			
 			let data=0;
 			//获取当前tr的下标
 			data=event.target.parentNode.parentNode.rowIndex;
 			//console.log(data);
 			
+			//遍历一行的每个数据
+			let j=0;
 			for(let i=0;i<event.target.parentNode.parentNode.children.length-1;i++){
-				Form.eq(i).val(event.target.parentNode.parentNode.children[i].innerHTML);
+				if(i==1){
+					
+			 		$("#selectCnoEdit").append($("<option>").val(event.target.parentNode.parentNode.children[i].innerHTML)
+							.text(event.target.parentNode.parentNode.children[i].innerHTML+" "+event.target.parentNode.parentNode.children[3].innerHTML));
+				}else if(i==2){
+					$("#selectClassIdEdit").append($("<option>").val(event.target.parentNode.parentNode.children[i].innerHTML).text(event.target.parentNode.parentNode.children[i].innerHTML));
+					//console.log($("#selectClassIdEdit"));
+				}else if(i!==3){
+					Form.eq(j).val(event.target.parentNode.parentNode.children[i].innerHTML);
+					if(j<Form.length){
+						j++;
+					}
+				}			
 							
 			}
 			//显示模态框
@@ -510,6 +524,7 @@
 			$('#myModal2').attr("data",data);
 			
 			getData();
+			getClassId();
 		}
 		/* 确认编辑 */
 		function comfirmEdit(){
@@ -533,17 +548,14 @@
 			}
 		    
 		    for(let j=0;j<tbody.length;j++){
-		    	if(tbody.eq(j).find("td").eq(1)[0].innerHTML==Form.eq(1).val()&&j!=rowIndex-1){
-		    		alert("课程名已存在！");
+		    	if(tbody.eq(j).find("td").eq(0)[0].innerHTML==Form.eq(0).val()&&j!=rowIndex-1){
+		    		alert("排课ID已存在！");
 					return
 		    	}
 				//console.log(tbody.eq(j).find("td:first")[0].innerHTML);
 			}
 		    
-		    if(Form.eq(3).val().indexOf(".")!=-1){
-	    		alert("学分为整数！");
-	    		return
-	    	}
+		
 		    
 			if(index===Form.length){
 				console.log("可以提交！");
@@ -557,7 +569,11 @@
 		function cancelEdit(){
 			//删除节点中的数据
 			$('#myModal2').removeAttr("data");
+			$("#selectCnoEdit>option").remove();
+			$("#selectClassIdEdit>option").remove();
 			
+			$("#selectCno>option").remove();
+			$("#selectClassId>option").remove();
 		}
 		
 		/*取消删除*/
@@ -566,10 +582,10 @@
 	    }
 		/*确定删除*/
 	    function comfirmDelete(){
-			let cno;
-			cno=$('#myModal').attr("data");
+			let plan_id;
+			plan_id=$('#myModal').attr("data");
 	    	//console.log(sno);
-	    	window.location = "../administratorCourseInfoDelete?cno="+cno;
+	    	window.location = "../administratorCourseChartInfoDelete?plan_id="+plan_id;
 	    }
 	    /* 触发删除模态框 */
 		function deleteDialog(e){
@@ -595,10 +611,35 @@
 	    	let DATA=JSON.stringify(data);
 	    	//console.log(JSON.parse(DATA))
 	   	 	DATA=JSON.parse(DATA)
-	     	console.log(DATA); 
+	     	//console.log(DATA);
+	    	//console.log($("#selectCno"));
+	    	for(let i=0;i<DATA.length;i++){
+	    		$("#selectCno").append("<option value='"+DATA[i].cno+"'>"+DATA[i].cno+" "+DATA[i].cname+"</option>");
+	    		$("#selectCnoEdit").append("<option value='"+DATA[i].cno+"'>"+DATA[i].cno+" "+DATA[i].cname+"</option>");
+	    	}
+	    	
 	  		});
 		}
-		getData();
+		
+		//获取班级ID
+		function getClassId(){
+			//获取数据
+			$.get("../administratorCourseChartInfoGetClassId",function(data,status){
+	    	//console.log("数据: " + JSON.stringify(data)+ "\n状态: " + status);
+	    	let DATA=JSON.stringify(data);
+	    	//console.log(JSON.parse(DATA))
+	   	 	DATA=JSON.parse(DATA)
+	     	//console.log(DATA);
+	    	//console.log($("#selectClassId"));
+	    	for(let i=0;i<DATA.length;i++){
+	    		$("#selectClassId").append("<option value='"+DATA[i].class_id+"'>"+DATA[i].class_id+" "+DATA[i].class_name+"</option>");
+	    		$("#selectClassIdEdit").append("<option value='"+DATA[i].class_id+"'>"+DATA[i].class_id+" "+DATA[i].class_name+"</option>");
+	    	}
+	    	
+	  		});
+		}
+		/* getClassId();
+		getData(); */
 	</script>
 
 	<%

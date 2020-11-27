@@ -16,22 +16,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.administrator.bean.CourseInfo;
-import com.alibaba.fastjson.JSON;
+import com.administrator.bean.ClassInfo;
 
+import com.alibaba.fastjson.JSON;
 import com.jdbc.jdbc;
 
 /**
- * Servlet implementation class administratorCourseChartInfoGetCno
+ * Servlet implementation class administratorCourseChartInfoGetClassId
  */
-@WebServlet("/administratorCourseChartInfoGetCno")
-public class administratorCourseChartInfoGetCno extends HttpServlet {
+@WebServlet("/administratorCourseChartInfoGetClassId")
+public class administratorCourseChartInfoGetClassId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public administratorCourseChartInfoGetCno() {
+    public administratorCourseChartInfoGetClassId() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,7 +41,6 @@ public class administratorCourseChartInfoGetCno extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//这个一定要注释掉 不能JQuery Get拿不到数据！
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		Cookie[] cookies = request.getCookies();
@@ -58,24 +57,26 @@ public class administratorCourseChartInfoGetCno extends HttpServlet {
             }
         }
         if(data!=null){
-        	String sql="SELECT * FROM course_info;";
+        	String sql="SELECT * FROM class_info;";
     		ResultSet rSet = jdbc.query(sql);
-    		List<CourseInfo> list=new ArrayList<CourseInfo>();
+    		List<ClassInfo> list=new ArrayList<ClassInfo>();
     		//System.out.println(sql);
     		try {
     			while(rSet.next()){
     				//封装到javaBean中
-    				CourseInfo courseInfo=new CourseInfo(rSet.getInt(1),rSet.getString(2),rSet.getString(3),rSet.getInt(4));
+    				ClassInfo classInfo=new ClassInfo(rSet.getLong(6), 
+    						rSet.getString(1),rSet.getString(2),rSet.getInt(3),
+    						rSet.getDate(4),rSet.getString(5),rSet.getString(7));
     				//把对象加入容器
-    				list.add(courseInfo);
+    				list.add(classInfo);
     			}
     			//把容器加入session
-				HttpSession session=request.getSession();
-				/*session.setAttribute("CourseInfo",list);
-				session.setAttribute("searchContent", "");
+				//HttpSession session=request.getSession();
+				//session.setAttribute("ClassInfo",list);
+				//session.setAttribute("searchContent", "");
 				//System.out.println(myInfo.getBirthday());
-				response.sendRedirect("administrator/CourseInfo.jsp");*/
-    			
+				//response.sendRedirect("administrator/ClassInfo.jsp");
+    						
     			//将list容器中的内容转换成json数据
     			request.setCharacterEncoding("utf-8");  // 设置request字符编码
     	        String searchText = request.getParameter("search"); // 获取传入的search字段的内容
@@ -102,9 +103,6 @@ public class administratorCourseChartInfoGetCno extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
-		
-	
 	}
 
 }
