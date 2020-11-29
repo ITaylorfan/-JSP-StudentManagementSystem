@@ -27,73 +27,95 @@
 </head>
 <%
 	/* 解决直接打开当前页面没有值的问题 */
- 	Object obj =session.getAttribute("RegisterStudentInfo");
+	Object obj = session.getAttribute("AdministratorUserInfo");
 	if (obj == null) {
-		response.sendRedirect("../administratorHome");
-	} 
+		response.sendRedirect("../administratorUserCenterGet");
+	}
 %>
 <body>
-<!-- 模态框 -->
-		<div class="modal" tabindex="-1" role="dialog"  id="myModal" style="display:none">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <h4 class="modal-title"><span class="glyphicon glyphicon-question-sign"></span> 提示</h4>
-          </div>
-          <div class="modal-body">
-            <p>确定要删除吗？</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancelDelete()">取消</button>
-            <button type="button" class="btn btn-primary" onclick="comfirmDelete()">确定</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div>
-    
-    <!-- 模态框2 -->
-		<div class="modal" tabindex="-1" role="dialog"  id="myModal2" style="display:none">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <h4 class="modal-title"><span class="glyphicon glyphicon-question-sign"></span> 提示</h4>
-          </div>
-          <div class="modal-body">
-            <p>确定要重置吗？</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cancelDelete()">取消</button>
-            <button type="button" class="btn btn-primary" onclick="comfirmReset()">确定</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div>
-    
+	<!-- 模态框 -->
+	<div class="modal" tabindex="-1" role="dialog" id="myModal"
+		style="display: none">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title">
+						<span class="glyphicon glyphicon-question-sign"></span> 提示
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>确定要删除吗？</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						onclick="cancelDelete()">取消</button>
+					<button type="button" class="btn btn-primary"
+						onclick="comfirmDelete()">确定</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
 
-		<!-- 警告框 -->
-		<div class="alert alert-danger alert-dismissible fade in" role="alert"
-			id="warningBox" style="display:none;width:300px;height:70px;z-index:1000;position:absolute;left:0;right:0;top:0;bottom:0;margin:60px auto">
-			<button type="button" class="close" data-dismiss="alert"
-				aria-label="Close">
-				<span aria-hidden="true">×</span>
-			</button>
-			<h4>错误！</h4>
-			<p>${error}</p>
+	<!-- 模态框2 -->
+	<div class="modal" tabindex="-1" role="dialog" id="myModal2"
+		style="display: none">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title">
+						<span class="glyphicon glyphicon-question-sign"></span> 提示
+					</h4>
+				</div>
+				<div class="modal-body">
+					<p>确定要重置吗？</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						onclick="cancelDelete()">取消</button>
+					<button type="button" class="btn btn-primary"
+						onclick="comfirmReset()">确定</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
 		</div>
-		
-			<!-- 成功框 -->
-		<div class="alert alert-success alert-dismissible fade in" role="alert"
-			id="successBox" style="display:none;width:300px;height:70px;z-index:1000;position:absolute;left:0;right:0;top:0;bottom:0;margin:60px auto">
-			<button type="button" class="close" data-dismiss="alert"
-				aria-label="Close">
-				<span aria-hidden="true">×</span>
-			</button>
-			<h4>成功！</h4>
-			<p>${success}</p>
-		</div>
-		
+		<!-- /.modal-dialog -->
+	</div>
+
+
+	<!-- 警告框 -->
+	<div class="alert alert-danger alert-dismissible fade in" role="alert"
+		id="warningBox"
+		style="display: none; width: 300px; height: 70px; z-index: 1000; position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: 60px auto">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">×</span>
+		</button>
+		<h4>错误！</h4>
+		<p>${error}</p>
+	</div>
+
+	<!-- 成功框 -->
+	<div class="alert alert-success alert-dismissible fade in" role="alert"
+		id="successBox"
+		style="display: none; width: 300px; height: 70px; z-index: 1000; position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: 60px auto">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">×</span>
+		</button>
+		<h4>成功！</h4>
+		<p>${success}</p>
+	</div>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -136,12 +158,14 @@
 
 
 			</ul>
-			<form class="navbar-form navbar-left">
-				<input type="text" class="form-control" placeholder="请输入内容..." id="searchInput">
-				<button type="button" class="btn btn-default"style="top: 8px" id="search">
-							<span class="glyphicon glyphicon-search"></span> 搜索
+		<!-- 	<form class="navbar-form navbar-left">
+				<input type="text" class="form-control" placeholder="请输入内容..."
+					id="searchInput">
+				<button type="button" class="btn btn-default" style="top: 8px"
+					id="search">
+					<span class="glyphicon glyphicon-search"></span> 搜索
 				</button>
-			</form>
+			</form> -->
 		</div>
 	</div>
 	</nav>
@@ -151,61 +175,62 @@
 			<!-- 左边菜单 -->
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li ><a href="Home.jsp"> <span
+					<li><a href="Home.jsp"> <span
 							class="glyphicon glyphicon-home"></span> 用户管理
 					</a></li>
-					<li><a href="StudentInfo.jsp"><span class="glyphicon glyphicon-user"></span>
-							学生信息管理</a></li>
-					<li><a href="CourseInfo.jsp"><span
+					<li><a href="StudentInfo.jsp"><span
+							class="glyphicon glyphicon-user"></span> 学生信息管理</a></li>
+					<li><a href="ClassInfo.jsp"><span
 							class="glyphicon glyphicon-blackboard"></span> 班级信息管理</a></li>
-					<li><a href="MyCourseChart.jsp"><span
+					<li><a href="CourseInfo.jsp"><span
 							class="glyphicon glyphicon-list-alt"></span> 课程信息管理</a></li>
-					<li><a href="MyGrade.jsp"><span
+					<li><a href="CourseChartInfo.jsp"><span
 							class="glyphicon glyphicon glyphicon-th"></span> 课程表信息管理</a></li>
-						<li><a href="MyGrade.jsp"><span
+					<li><a href="GradeInfo.jsp"><span
 							class="glyphicon glyphicon-thumbs-up"></span> 成绩信息管理</a></li>
 					<li class="active"><a href="#"><span
-							class="glyphicon glyphicon-asterisk"></span> 个人中心</a></li>		
+							class="glyphicon glyphicon-asterisk"></span> 个人中心</a></li>
 				</ul>
 
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">用户管理</h1>
 
-				<!-- <h4 class="sub-header">班级信息</h4> -->
+				<h1 class="page-header">个人中心</h1>
 
-				<div class="panel panel-default panel-primary"
-					style="border-top: none; text-align: center">
-					<div class="panel-heading">
-						<h3 class="panel-title">已注册学生用户信息</h3>
+				<div class="row placeholders">
+					<!-- 头像 -->
+					<div class="col-xs-12 col-sm-12 col-md-3 placeholder">
+						<img src="${AdministratorUserInfo.avatar}" width="200" height="200"
+							class="" alt="Generic placeholder thumbnail">
+						<h4>${AdministratorUserInfo.name}</h4>
+						<span class="text-muted">${AdministratorUserInfo.manageId}</span>
+						<p><button type="button" class="btn btn-danger btn-sm"
+												style="" id="changePassword">更改密码</button></p>
 					</div>
-					<div class=" panel-body" >
-					<div class="table-responsive">
-						<table class="table table-condensed" >
-						<thead>
-							<tr>
-								<th>用户名</th>							
-								<th>学号</th>
-								<th>姓名</th>
-								<th>性别</th>
-								<th><button type="button" class="btn btn-info btn-xs" style="" id="refresh">刷新</button></th>
-							</tr>
-						</thead>
-							<tbody>
-							<c:forEach items="${RegisterStudentInfo}" var="ci">
-							<tr>
-								<td>${ci.username}</td>
-								<td>${ci.sno}</td>
-								<td>${ci.name}</td>
-								<td>${ci.sex}</td>
-								<td style="width:28%">
-								<button type="button" class="btn btn-success btn-sm" style="outline:none" onclick="resetDialog()">重置密码</button>
-								<button type="button" class="btn btn-danger btn-sm" style="outline:none" onclick="deleteDialog()">删除</button>
-								</td>
-							</tr>
-							</c:forEach>
-							</tbody>
-						</table>
+					<!-- 个人详细信息 -->
+					<div class="col-xs-12 col-sm-12  col-md-9 placeholder">
+						<div class="panel panel-default panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title">个人信息</h3>
+							</div>
+							<div class=" panel-body">
+								<ul class="list-group col-xs-5 col-sm-5  col-md-4">
+									<li class="list-group-item list-group-item-info">管理员ID</li>
+									<li class="list-group-item list-group-item-success">姓名</li>
+									<li class="list-group-item list-group-item-info">性别</li>
+									<li class="list-group-item list-group-item-success">生日</li>
+									<li class="list-group-item list-group-item-info">电话</li>
+								
+								</ul>
+								<ul class="list-group col-xs-7 col-sm-7  col-md-8">
+									<li class="list-group-item list-group-item-info">${AdministratorUserInfo.manageId}</li>
+									<li class="list-group-item list-group-item-success">${AdministratorUserInfo.name}</li>
+									<li class="list-group-item list-group-item-info">${AdministratorUserInfo.sex}</li>
+									<li class="list-group-item list-group-item-success">${AdministratorUserInfo.birthday}</li>
+									<li class="list-group-item list-group-item-info">${AdministratorUserInfo.phone}</li>
+								
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -225,8 +250,8 @@
 	</script>
 	<script
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		
-		
+
+
 	<script>
 		/*搜索*/
 		$("#search").click(function(){
@@ -284,39 +309,44 @@
 			window.location = "../administratorHome"
 		})
 		
+			/* 更改密码按钮 */
+		$("#changePassword").click(function(){
+			window.location = "./ChangePassword.jsp"
+		})
+		
 	</script>
-	
-		<%
-			String error = (String) session.getAttribute("error");
-			if (error != null) {
-		%>
-			<script>
+
+	<%
+		String error = (String) session.getAttribute("error");
+		if (error != null) {
+	%>
+	<script>
 				$("#warningBox").slideDown();
 				setTimeout(()=>{
 					$("#warningBox").slideUp();
 				},3000)
 			</script>
-	
-		<%
-			}
-			
-			session.setAttribute("error", null);
-		%>
-		
-			<%
-			String success = (String) session.getAttribute("success");
-			if (success != null) {
-		%>
-			<script>
+
+	<%
+		}
+
+		session.setAttribute("error", null);
+	%>
+
+	<%
+		String success = (String) session.getAttribute("success");
+		if (success != null) {
+	%>
+	<script>
 				$("#successBox").slideDown();
 				setTimeout(()=>{
 					$("#successBox").slideUp();
 				},3000)
 			</script>
-	
-		<%
-			}
-			session.setAttribute("success", null);
-		%>
+
+	<%
+		}
+		session.setAttribute("success", null);
+	%>
 </body>
 </html>

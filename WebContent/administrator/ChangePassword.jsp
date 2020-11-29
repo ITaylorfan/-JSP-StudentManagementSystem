@@ -101,16 +101,16 @@
 					</a></li>
 					<li><a href="StudentInfo.jsp"><span class="glyphicon glyphicon-user"></span>
 							学生信息管理</a></li>
-					<li><a href="CourseInfo.jsp"><span
+					<li><a href="ClassInfo.jsp"><span
 							class="glyphicon glyphicon-blackboard"></span> 班级信息管理</a></li>
-					<li><a href="MyCourseChart.jsp"><span
+					<li><a href="CourseInfo.jsp"><span
 							class="glyphicon glyphicon-list-alt"></span> 课程信息管理</a></li>
-					<li><a href="MyGrade.jsp"><span
+					<li><a href="CourseChartInfo.jsp"><span
 							class="glyphicon glyphicon glyphicon-th"></span> 课程表信息管理</a></li>
-						<li><a href="MyGrade.jsp"><span
+						<li><a href="GradeInfo.jsp"><span
 							class="glyphicon glyphicon-thumbs-up"></span> 成绩信息管理</a></li>
 					<li class="active"><a href="#"><span
-							class="glyphicon glyphicon-asterisk"></span> 个人中心</a></li>		
+							class="glyphicon glyphicon-asterisk"></span> 个人中心</a></li>			
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -118,7 +118,11 @@
 
 				<div class="row placeholders">
 					<!-- 头像 -->
+					
 					<div class="col-xs-12 col-sm-12 col-md-12 placeholder">
+					<p style="text-align:left">
+					<button type="button" class="btn btn-info btn-sm" id="back"><span class="glyphicon glyphicon-arrow-left"></span>返回</button>
+					</p>
 						<div class="form-box" id="form-box">
 							<!-- <div class="img-box"></div>
 							<div class="title-box">
@@ -182,6 +186,11 @@
 		//console.log(passWord);
 		
 	}
+	
+	/* 更改密码按钮 */
+	$("#back").click(function(){
+		window.history.back(-1);
+	})
 	</script>
 
 
