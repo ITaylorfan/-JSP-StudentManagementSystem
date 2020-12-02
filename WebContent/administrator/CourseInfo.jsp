@@ -154,7 +154,7 @@
 							<label for="inputCno" class="col-sm-2 control-label">课程号</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="inputCno"
-									placeholder="请输入课程号" name="cno" required="" >
+									placeholder="请输入课程号" name="cno" required="">
 							</div>
 						</div>
 						<div class="form-group">
@@ -340,6 +340,30 @@
 									</c:forEach>
 								</tbody>
 							</table>
+
+
+							<!-- 分页 -->
+							<nav aria-label="Page navigation">
+							<ul class="pagination">
+								<li><a href="../administratorCourseInfoPaging?page=prev"
+									aria-label="Previous"> <span aria-hidden="true">«</span>
+								</a></li>
+								<!-- <li class="active"><span>1 <span class="sr-only">(current)</span></span>
+								</li> -->
+
+
+								<c:forEach items="${pageNum}" var="ci">
+									<li class="pageNum"><a
+										href="../administratorCourseInfoPaging?page=${ci-1}">${ci}</a></li>
+								</c:forEach>
+
+
+								<li><a href="../administratorCourseInfoPaging?page=next"
+									aria-label="Next"> <span aria-hidden="true">»</span>
+								</a></li>
+							</ul>
+
+							</nav>
 						</div>
 					</div>
 				</div>
@@ -361,6 +385,23 @@
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<script>
+	//点击后设置当前被选中
+	<%
+	int current_page=0;
+	if(session.getAttribute("currentPage")!=null){
+		 current_page = (Integer) session.getAttribute("currentPage");
+	}
+	%>
+	var currentPage=<%=current_page%>
+	console.log(currentPage);
+	$(".pageNum").eq(currentPage).addClass("active");
+	//console.log($(".pageNum")[1].classList.add("active"))
+	
+	</script>
+
+
+	<script>
+	//console.log($(".pageNum")[0].className+=" active")
 		/* 确认添加信息 */
 		function confirmAdd(){
 			const Form=$("#editForm2 input");

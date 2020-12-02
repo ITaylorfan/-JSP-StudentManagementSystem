@@ -70,9 +70,9 @@
 
 				
 			</ul>
-			<form class="navbar-form navbar-left">
+			<!-- <form class="navbar-form navbar-left">
 				<input type="text" class="form-control" placeholder="Search...">
-			</form>
+			</form> -->
 		</div>
 	</div>
 	</nav>

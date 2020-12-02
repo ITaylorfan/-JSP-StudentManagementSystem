@@ -14,7 +14,7 @@
     <meta name="author" content="">
      <link rel="icon" href="../assets/images/favicon.jpeg">
 
-    <title>学生信息管理系统</title>
+    <title>学生信息管理系统 | 我的成绩</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -69,9 +69,9 @@
 
 				
 			</ul>
-			<form class="navbar-form navbar-left">
+		<!-- 	<form class="navbar-form navbar-left">
 				<input type="text" class="form-control" placeholder="Search...">
-			</form>
+			</form> -->
         </div>
       </div>
     </nav>

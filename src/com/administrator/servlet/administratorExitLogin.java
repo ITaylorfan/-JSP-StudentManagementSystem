@@ -39,6 +39,9 @@ public class administratorExitLogin extends HttpServlet {
 	                    c.setMaxAge(0);
 	                    response.addCookie(c);               
 	                    session.setAttribute("success","注销成功！");
+	                    
+	                    //删除所有session
+	                    session.invalidate();
 	                    response.sendRedirect("./administrator/Login.jsp");
 	                }
 	            }
