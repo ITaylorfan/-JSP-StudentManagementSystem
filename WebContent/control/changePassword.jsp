@@ -87,16 +87,16 @@
 			<!-- 左边菜单 -->
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a href="home.jsp"> <span
+					<li class="active"><a href="#"> <span
 							class="glyphicon glyphicon-user"></span> 个人中心
 					</a></li>
-					<li><a href="MyClass.jsp"><span
+					<li><a href="../MyClassServlet"><span
 							class="glyphicon glyphicon-home"></span> 我的班级</a></li>
-					<li><a href="CourseInfo.jsp"><span
+					<li><a href="../courseInfo"><span
 							class="glyphicon glyphicon-blackboard"></span> 课程信息</a></li>
-					<li><a href="MyCourseChat.jsp"><span
+					<li><a href="MyCourseChart.jsp"><span
 							class="glyphicon glyphicon-list-alt"></span> 班级课程表</a></li>
-					<li><a href="MyGrade.jsp"><span
+					<li><a href="../myGrade"><span
 							class="glyphicon glyphicon-thumbs-up"></span> 我的成绩</a></li>
 				</ul>
 			</div>
@@ -106,25 +106,33 @@
 				<div class="row placeholders">
 					<!-- 头像 -->
 					<div class="col-xs-12 col-sm-12 col-md-12 placeholder">
+						<p style="text-align: left">
+							<button type="button" class="btn btn-info btn-sm" id="back">
+								<span class="glyphicon glyphicon-arrow-left"></span>返回
+							</button>
+						</p>
+						
 						<div class="form-box" id="form-box">
 							<!-- <div class="img-box"></div>
 							<div class="title-box">
 								<span>修改密码</span>
 							</div> -->
 
-							<form class="form-signin" action="../changePassword" method="post" id="changePasswordForm" onsubmit='return checkForm()'>
-								
-								<label for="inputPassword" class="sr-only">请输入新密码</label> 
-								<input
+							<form class="form-signin" action="../changePassword"
+								method="post" id="changePasswordForm"
+								onsubmit='return checkForm()'>
+
+								<label for="inputPassword" class="sr-only">请输入新密码</label> <input
 									type="password" id="inputPassword" class="form-control"
 									name="password" placeholder="请输入新密码" required="" autofocus=""
-									value=""> 
-								<label for="confirmPassword" class="sr-only">确认密码</label>
+									value=""> <label for="confirmPassword" class="sr-only">确认密码</label>
 								<input type="password" id="confirmPassword" class="form-control"
-									name="confirmPassword" placeholder="确认密码" required="aaa" value="">
-								
+									name="confirmPassword" placeholder="确认密码" required="aaa"
+									value="">
 
-								<button class="btn btn-lg btn-success btn-block" type="submit" style="outline:none" id="submit">提交</button>
+
+								<button class="btn btn-lg btn-success btn-block" type="submit"
+									style="outline: none" id="submit">提交</button>
 							</form>
 						</div>
 					</div>
@@ -133,11 +141,16 @@
 			</div>
 		</div>
 	</div>
-	<div class="alert alert-danger" role="alert" style="width:300px;position:absolute;left:0;right:0;top:60px;margin:auto;display:none" id="errorDialog">
-		 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>错误!</strong>两次输入的密码不一致！
+	<div class="alert alert-danger" role="alert"
+		style="width: 300px; position: absolute; left: 0; right: 0; top: 60px; margin: auto; display: none"
+		id="errorDialog">
+		<button type="button" class="close" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<strong>错误!</strong>两次输入的密码不一致！
 	</div>
-	
+
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -149,26 +162,30 @@
 	</script>
 	<script
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+
 	<script>
-	function checkForm(){
-		var passWord=$("#inputPassword").val();
-		var confirm=$("#confirmPassword").val();
-		if(passWord!==confirm){
-			$("#errorDialog").slideDown();
-		/* 	setTimeout(()=>{
-				$("#errorDialog").slideUp();
-			},3000) */
-				setTimeout(function(){
+		function checkForm() {
+			var passWord = $("#inputPassword").val();
+			var confirm = $("#confirmPassword").val();
+			if (passWord !== confirm) {
+				$("#errorDialog").slideDown();
+				/* 	setTimeout(()=>{
+						$("#errorDialog").slideUp();
+					},3000) */
+				setTimeout(function() {
 					$("#errorDialog").slideUp();
-				},3000)
-			return false;
-		}else{
-			return true;
+				}, 3000)
+				return false;
+			} else {
+				return true;
+			}
+			//console.log(passWord);
+
 		}
-		//console.log(passWord);
-		
-	}
+		/* 更改密码返回按钮 */
+		$("#back").click(function(){
+			window.location="../HomeServlet";
+		})
 	</script>
 
 

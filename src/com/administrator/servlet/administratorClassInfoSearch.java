@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.administrator.bean.ClassInfo;
+import com.administrator.page.PagingFunction;
 
 /**
  * Servlet implementation class administratorClassInfoSearch
@@ -42,7 +43,7 @@ public class administratorClassInfoSearch extends HttpServlet {
 		
 		//System.out.println(query);
 		try{
-			List<ClassInfo> list2=new ArrayList<ClassInfo>();
+			List<Object> list2=new ArrayList<Object>();
 			HttpSession session=request.getSession();
 			List<ClassInfo> list=(List<ClassInfo>)session.getAttribute("ClassInfo");
 			//System.out.println(query);
@@ -54,8 +55,20 @@ public class administratorClassInfoSearch extends HttpServlet {
 					list2.add(list.get(i));
 				}				
 			}
-			session.setAttribute("ClassInfo",list2);
-			session.setAttribute("searchContent",query);
+			//总页数
+			//页数有关的数组
+			int []page_num=null;
+			//注意此处list必须为所有数据的list
+			page_num=PagingFunction.getPageNum(list2);
+			
+			session.setAttribute("ClassInfoPageNum", page_num);
+			session.setAttribute("ClassInfoCurrentPage",page_num[0]-1);  //当前页数 默认为第一页
+			
+			session.setAttribute("AllClassInfo",list2); //保留搜索到的所有数据   将之前存在的所有数据覆盖掉  刷新时会重新获得所有数据
+		
+			list2=PagingFunction.getPageList(list2,"0",10);//调用分页函数
+			session.setAttribute("ClassInfo",list2);  //设置要显示的list
+			
 			response.sendRedirect("administrator/ClassInfo.jsp");
 			//System.out.println(sno);
 		}catch(Exception e){

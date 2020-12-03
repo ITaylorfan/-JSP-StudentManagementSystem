@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.administrator.bean.CourseChartInfo;
-
+import com.administrator.page.PagingFunction;
 import com.jdbc.jdbc;
 
 /**
@@ -57,7 +57,7 @@ public class administratorCourseChartInfoGet extends HttpServlet {
         if(data!=null){
         	String sql="SELECT a.*,b.cname FROM course_chart a,course_info b WHERE a.cno=b.cno ORDER BY plan_id;";
     		ResultSet rSet = jdbc.query(sql);
-    		List<CourseChartInfo> list=new ArrayList<CourseChartInfo>();
+    		List<Object> list=new ArrayList<Object>();
     		//System.out.println(sql);
     		try {
     			while(rSet.next()){
@@ -69,9 +69,24 @@ public class administratorCourseChartInfoGet extends HttpServlet {
     			}
     			//把容器加入session
 				HttpSession session=request.getSession();
-				session.setAttribute("CourseChartInfo",list);
+				session.setAttribute("AllCourseChartInfo",list);
 				session.setAttribute("searchContent", "");
 				//System.out.println(myInfo.getBirthday());
+				
+				//总页数
+				//页数有关的数组
+				int []page_num=null;
+				//注意此处list必须为所有数据的list
+				page_num=PagingFunction.getPageNum(list);
+				//System.out.println(page_num[1]);
+				session.setAttribute("CourseChartInfoPageNum", page_num);
+				session.setAttribute("CourseChartInfoCurrentPage",page_num[0]-1);  //当前页数 默认为第一页
+				
+				list=PagingFunction.getPageList(list,"0",10);//调用分页函数
+				session.setAttribute("CourseChartInfo",list);  //在页面中显示的容器
+				
+				
+				
 				response.sendRedirect("administrator/CourseChartInfo.jsp");
     			
     		} catch (SQLException e) {

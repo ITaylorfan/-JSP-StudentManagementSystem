@@ -383,6 +383,29 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							
+								<!-- 分页 -->
+							<nav aria-label="Page navigation">
+							<ul class="pagination">
+								<li><a href="../administratorClassInfoPaging?page=prev"
+									aria-label="Previous"> <span aria-hidden="true">«</span>
+								</a></li>
+								<!-- <li class="active"><span>1 <span class="sr-only">(current)</span></span>
+								</li> -->
+
+
+								<c:forEach items="${ClassInfoPageNum}" var="ci">
+									<li class="pageNum"><a
+										href="../administratorClassInfoPaging?page=${ci-1}">${ci}</a></li>
+								</c:forEach>
+
+
+								<li><a href="../administratorClassInfoPaging?page=next"
+									aria-label="Next"> <span aria-hidden="true">»</span>
+								</a></li>
+							</ul>
+
+							</nav>
 						</div>
 					</div>
 				</div>
@@ -402,7 +425,22 @@
 	</script>
 	<script
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+		
+	<script>
+	//点击后设置当前被选中
+	<%
+	int current_page=0;
+	if(session.getAttribute("ClassInfoCurrentPage")!=null){
+		 current_page = (Integer) session.getAttribute("ClassInfoCurrentPage");
+	}
+	%>
+	var currentPage=<%=current_page%>
+	console.log(currentPage);
+	$(".pageNum").eq(currentPage).addClass("active");
+	//console.log($(".pageNum")[1].classList.add("active"))
+	
+	</script>	
+	
 	<script>
 		/* 确认添加信息 */
 		function confirmAdd(){

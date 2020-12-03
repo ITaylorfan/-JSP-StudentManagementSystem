@@ -81,11 +81,17 @@
       <!-- 左边菜单 -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">  
-            <li><a href="home.jsp"> <span class="glyphicon glyphicon-user"></span> 个人中心</a></li>
-            <li ><a href="MyClass.jsp"><span class="glyphicon glyphicon-home"></span> 我的班级</a></li>
-            <li><a href="CourseInfo.jsp"><span class="glyphicon glyphicon-blackboard"></span> 课程信息</a></li>
-            <li><a href="MyCourseChart.jsp"><span class="glyphicon glyphicon-list-alt"></span> 班级课程表</a></li>
-            <li   class="active"><a href="#"><span class="glyphicon glyphicon-thumbs-up"></span> 我的成绩</a></li>
+            	<li><a href="../HomeServlet"> <span
+							class="glyphicon glyphicon-user"></span> 个人中心
+					</a></li>
+					<li><a href="../MyClassServlet"><span
+							class="glyphicon glyphicon-home"></span> 我的班级</a></li>
+					<li><a href="../courseInfo"><span
+							class="glyphicon glyphicon-blackboard"></span> 课程信息</a></li>
+					<li><a href="MyCourseChart.jsp"><span
+							class="glyphicon glyphicon-list-alt"></span> 班级课程表</a></li>
+					<li class="active"><a href="../myGrade"><span
+							class="glyphicon glyphicon-thumbs-up"></span> 我的成绩</a></li>
           </ul>
           
         </div>

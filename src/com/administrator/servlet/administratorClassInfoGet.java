@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import com.administrator.bean.AllStudentInfo;
 import com.administrator.bean.ClassInfo;
+import com.administrator.page.PagingFunction;
 import com.jdbc.jdbc;
 
 /**
@@ -57,7 +58,7 @@ public class administratorClassInfoGet extends HttpServlet {
         if(data!=null){
         	String sql="SELECT * FROM class_info;";
     		ResultSet rSet = jdbc.query(sql);
-    		List<ClassInfo> list=new ArrayList<ClassInfo>();
+    		List<Object> list=new ArrayList<Object>();
     		//System.out.println(sql);
     		try {
     			while(rSet.next()){
@@ -70,9 +71,24 @@ public class administratorClassInfoGet extends HttpServlet {
     			}
     			//把容器加入session
 				HttpSession session=request.getSession();
-				session.setAttribute("ClassInfo",list);
+				session.setAttribute("AllClassInfo",list);
 				session.setAttribute("searchContent", "");
 				//System.out.println(myInfo.getBirthday());
+				
+				//总页数
+				//页数有关的数组
+				int []page_num=null;
+				//注意此处list必须为所有数据的list
+				page_num=PagingFunction.getPageNum(list);
+				//System.out.println(page_num[1]);
+				session.setAttribute("ClassInfoPageNum", page_num);
+				session.setAttribute("ClassInfoCurrentPage",page_num[0]-1);  //当前页数 默认为第一页
+				
+				list=PagingFunction.getPageList(list,"0",10);//调用分页函数
+				session.setAttribute("ClassInfo",list);  //在页面中显示的容器
+				
+				
+				
 				response.sendRedirect("administrator/ClassInfo.jsp");
     			
     		} catch (SQLException e) {

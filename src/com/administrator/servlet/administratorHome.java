@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.administrator.bean.RegisterStudentInfo;
+import com.administrator.page.PagingFunction;
 import com.jdbc.jdbc;
 
 /**
@@ -56,7 +57,7 @@ public class administratorHome extends HttpServlet {
 	        if(data!=null){
 	        	String sql="SELECT a.*,b.name,b.sex FROM user_login a,student_info b WHERE TYPE='学生' AND a.user_info_id=b.sno order by b.sno;";
 	    		ResultSet rSet = jdbc.query(sql);
-	    		List<RegisterStudentInfo> list=new ArrayList<RegisterStudentInfo>();
+	    		List<Object> list=new ArrayList<Object>();
 	    		//System.out.println(sql);
 	    		try {
 	    			while(rSet.next()){
@@ -68,8 +69,23 @@ public class administratorHome extends HttpServlet {
 	    			}
 	    			//把容器加入session
     				HttpSession session=request.getSession();
-    				session.setAttribute("RegisterStudentInfo",list);
+    				session.setAttribute("AllRegisterStudentInfo",list);
     				//System.out.println(myInfo.getBirthday());
+    				
+    				//总页数
+    				//页数有关的数组
+    				int []page_num=null;
+    				//注意此处list必须为所有数据的list
+    				page_num=PagingFunction.getPageNum(list);
+    				//System.out.println(page_num[1]);
+    				session.setAttribute("HomePageNum", page_num);
+    				session.setAttribute("HomeCurrentPage",page_num[0]-1);  //当前页数 默认为第一页
+    				
+    				list=PagingFunction.getPageList(list,"0",10);//调用分页函数
+    				session.setAttribute("RegisterStudentInfo",list);  //在页面中显示的容器
+    				
+    				
+    				
     				response.sendRedirect("administrator/Home.jsp");
 	    			
 	    		} catch (SQLException e) {

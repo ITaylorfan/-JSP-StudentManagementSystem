@@ -67,7 +67,7 @@ public class myGrade extends HttpServlet {
 			String sql = "SELECT DISTINCT a.cno,b.cname,a.grade,b.credit,c.teacher "
 					+ "FROM grade_info a,course_info b,course_chart c "
 					+ "WHERE a.cno=b.cno AND a.cno=c.cno AND a.sno="+sno+";";
-			System.out.println(sql);
+			//System.out.println(sql);
 			ResultSet rSet = jdbc.query(sql);
 					
 			List<MyGrade> list=new ArrayList<MyGrade>();

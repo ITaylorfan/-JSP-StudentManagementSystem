@@ -189,7 +189,7 @@
 	
 	/* 更改密码按钮 */
 	$("#back").click(function(){
-		window.history.back(-1);
+		window.location="../administratorUserCenterGet";
 	})
 	</script>
 

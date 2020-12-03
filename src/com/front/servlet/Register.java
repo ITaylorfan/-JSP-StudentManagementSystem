@@ -66,7 +66,7 @@ public class Register extends HttpServlet {
 				response.sendRedirect("RegisterError.jsp");
 			}
 			
-			System.out.println(account+passWord);
+			//System.out.println(account+passWord);
 		}catch (Exception e) {
 			// TODO: handle exception
 			//response.sendRedirect("RegisterError.jsp");

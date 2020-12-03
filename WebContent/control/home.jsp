@@ -82,16 +82,16 @@
 			<!-- 左边菜单 -->
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a href="#"> <span
+					<li class="active"><a href="../HomeServlet"> <span
 							class="glyphicon glyphicon-user"></span> 个人中心
 					</a></li>
-					<li><a href="MyClass.jsp"><span
+					<li><a href="../MyClassServlet"><span
 							class="glyphicon glyphicon-home"></span> 我的班级</a></li>
-					<li><a href="CourseInfo.jsp"><span
+					<li><a href="../courseInfo"><span
 							class="glyphicon glyphicon-blackboard"></span> 课程信息</a></li>
 					<li><a href="MyCourseChart.jsp"><span
 							class="glyphicon glyphicon-list-alt"></span> 班级课程表</a></li>
-					<li><a href="MyGrade.jsp"><span
+					<li><a href="../myGrade"><span
 							class="glyphicon glyphicon-thumbs-up"></span> 我的成绩</a></li>
 				</ul>
 				<!--      <ul class="nav nav-sidebar">
@@ -117,6 +117,9 @@
 							class="" alt="Generic placeholder thumbnail">
 						<h4>${MyInfo.name}</h4>
 						<span class="text-muted">${MyInfo.sno}</span>
+						<p>
+							<button type="button" class="btn btn-danger btn-sm" id="changePassword">更改密码</button>
+						</p>
 					</div>
 					<!-- 个人详细信息 -->
 					<div class="col-xs-12 col-sm-12  col-md-9 placeholder">
@@ -167,5 +170,14 @@
 	</script>
 	<script
 		src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		
+	<script>
+		$("#changePassword").click(function(){
+			console.log("aaa");
+			window.location="./changePassword.jsp";
+		})
+		
+	</script>	
 </body>
 </html>
