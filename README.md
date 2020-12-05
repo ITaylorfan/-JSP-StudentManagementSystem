@@ -19,5 +19,11 @@
 
 8. **编译器：eclipseNeon.3**
 
+### 个人博客
 
+[我的博客](https://itaylorfan.github.io/)
+
+### 个人邮箱
+
+**itaylorfan@qq.com ** 
 
