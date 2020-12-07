@@ -25,5 +25,5 @@
 
 ### 个人邮箱
 
-**itaylorfan@qq.com ** 
+*itaylorfan@qq.com *
 
